@@ -11,3 +11,7 @@ packageExtensions:
   dependency-cruiser:
     dependencies:
       typescript: ^6.0.0
+
+# 설치 스크립트 실행을 허용하는 패키지(pnpm은 기본으로 막는다). lefthook: git 훅 바이너리 (T0-6)
+allowBuilds:
+  lefthook: true

@@ -20,7 +20,7 @@
 ## 진행 요약
 | 단계 | 내용 | 작업 수 | 끝 |
 |---|---|---|---|
-| P0 | 모노레포 뼈대 | 6 | 5 |
+| P0 | 모노레포 뼈대 | 6 | 6 |
 | P1 | 스키마·문서 모델 (화면 없이) | 9 | 0 |
 | P2 | 데스크톱 앱 뼈대 · 프로젝트 만들기 | 12 | 0 |
 | P3 | 캔버스 · 화면 목록 | 13 | 0 |
@@ -30,7 +30,7 @@
 | P7 | 개발자 모드 · 화면↔코드 | 12 | 0 |
 | P8 | 프로토타입 · 흐름 보기 | 5 | 0 |
 | P9 | 성능·배포 | 6 | 0 |
-| | **합계** | **98** | **5** |
+| | **합계** | **98** | **6** |
 
 **큰 흐름(무엇이 언제 동작하나)**
 1. P0~P1: 화면 없이 파일 형식·직렬화·op·되돌리기 완성
@@ -74,10 +74,11 @@
   - 완료 조건: `core`에서 `mcp-tools`를 import하면 `pnpm check` 실패, 지우면 통과.
   - 메모: dependency-cruiser 18.8.0 선택(패키지별 허용 방향을 표현하려면 Biome 규칙으로는 부족). TS 7 API를 아직 못 써서 `pnpm-workspace.yaml`의 `packageExtensions`로 dependency-cruiser에만 TypeScript 6.0.3을 붙임 — 저장소 `tsc`는 7.0.2 그대로. 패키지는 `exports: ./src/index.ts`(소스 직접 참조), 허용된 의존만 `workspace:*`. 확인 — core → mcp-tools: 의존 미선언이면 `not-to-unresolvable`, 선언해도 `core-uses-schema-only`로 실패 / core → schema 통과 / packages의 `node:fs` 실패, `*.test.ts`에선 통과 / `electron` 실패 / packages → apps 실패. `pnpm deps`는 있는 폴더만 검사(`apps/`는 T2-1에서 생기면 자동 포함). `apps/` 빈 자리는 Vitest projects glob이 숨김 파일까지 잡아 두지 않음.
 
-- [ ] **T0-6 CLAUDE.md + pre-commit 훅**
+- [x] **T0-6 CLAUDE.md + pre-commit 훅** — 2026-11-21 · f9a992a, 8f539d9
   - 의존: T0-5 · 참고: spec §12
   - 할 일: 루트 `CLAUDE.md` 완성(지금 있는 시작용 최소본 + spec §12 요약, 이 문서 사용법, 주요 명령 — Git 규칙 절은 유지), git 훅(lefthook 또는 simple-git-hooks): pre-commit = `pnpm check`, **commit-msg = commitlint**(type 13종 enum, header 50자, body 줄 72자, `Co-Authored-By`·`Generated with` 줄 거부 — docs/git-convention.md §2).
   - 완료 조건: 린트 오류가 있는 상태로 `git commit` 하면 막힌다. `update stuff`, `feat: 끝에 마침표.`, AI 서명 줄이 있는 메시지는 commit-msg 훅이 거부하고, git-convention.md §2-8 예시는 통과한다.
+  - 메모: lefthook 2.2.2(pnpm이 설치 스크립트를 막아 `pnpm-workspace.yaml` `allowBuilds: {lefthook: true}`), `prepare` = `lefthook install`. commitlint 21.2.4 + config-conventional, 규칙은 `commitlint.config.ts`(type 13종, subject 50자·마침표 금지·대소문자 검사 안 함(한국어), header 72자, body·footer 앞 빈 줄·줄 72자, 플러그인 `no-ai-attribution`). 확인 — 문서 예시 5종 통과, 나쁜 메시지 8종 거부, 지금까지 커밋 20개 모두 통과. 실제 `git commit`: 정상 커밋 통과(check 2.5초·commitlint 0.4초), `any` 파일 커밋 → pre-commit에서 noExplicitAny로 거부, `update stuff` → type-empty로 거부, Claude 서명 줄 → no-ai-attribution으로 거부(모두 HEAD 그대로). 주의: 처음 시험 때 `git stash -u`로 `lefthook.yml`까지 치워져 훅 없이 시험 커밋 2개가 생겼고, push 전에 되돌림 — CLAUDE.md에 «훅 시험 때 stash 금지» 추가.
 
 ## P1. 스키마·문서 모델 — 화면 없이 완성 (spec §5, design §3)
 

@@ -96,6 +96,8 @@ hotfix/v<버전>-<설명>                   hotfix/v0.1.1-git-path
 - `WIP`, `update`, `fix bug`처럼 내용 없는 메시지.
 - 서로 관계없는 변경을 한 커밋에 섞지 않는다.
 
+> **자동 검사**: commit-msg 훅(lefthook + commitlint, `commitlint.config.ts`)이 type 목록·제목 50자·마침표·빈 줄·줄 72자·AI 서명 줄을 검사하고, pre-commit 훅이 `pnpm check`를 돌린다. 둘 중 하나라도 실패하면 커밋되지 않는다. `--no-verify`로 건너뛰지 않는다.
+
 ### 2-8. 예
 ```
 feat(core): 안정된 직렬화 구현
