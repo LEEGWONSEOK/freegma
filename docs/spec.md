@@ -86,7 +86,7 @@ freegma/
   CLAUDE.md                      ← AI 개발용 규칙 요약(§12)
   biome.json  pnpm-workspace.yaml  tsconfig.base.json  .node-version
 ```
-- **의존 방향은 한쪽으로만**: `schema` ← `core` ← `diff`·`codegen`·`style` ← `mcp-tools` ← `apps/desktop`. 거꾸로 import하면 Biome 규칙(또는 dependency-cruiser)으로 막는다.
+- **의존 방향은 한쪽으로만**: `schema` ← `core` ← `diff`·`codegen`·`style` ← `mcp-tools` ← `apps/desktop`. 거꾸로 import하면 dependency-cruiser(`.dependency-cruiser.json`, `pnpm deps` — `pnpm check`에 포함)로 막는다. `codegen → style`은 허용(§6). `packages/*`에서 `electron`·`fs`·`child_process` import 금지(테스트 파일 제외).
 - `packages/*`는 Node·브라우저 어디서나 돌아야 한다. `fs`가 필요한 부분은 `core/io`에 인터페이스로 두고 구현은 앱에서 넣는다(테스트는 메모리 파일시스템).
 
 ## 4. 실행 모드와 프로세스

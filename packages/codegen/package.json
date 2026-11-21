@@ -1,0 +1,18 @@
+{
+  "name": "@freegma/codegen",
+  "version": "0.0.0",
+  "private": true,
+  "description": "IR + 스펙 어댑터, 스펙·라우터 감지",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@freegma/schema": "workspace:*",
+    "@freegma/core": "workspace:*",
+    "@freegma/style": "workspace:*"
+  }
+}

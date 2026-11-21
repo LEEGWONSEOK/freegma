@@ -1,0 +1,17 @@
+{
+  "name": "@freegma/style",
+  "version": "0.0.0",
+  "private": true,
+  "description": "노드 → CSS 스타일 변환 (캔버스·웹 코드 생성이 함께 씀)",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@freegma/schema": "workspace:*",
+    "@freegma/core": "workspace:*"
+  }
+}
