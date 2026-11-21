@@ -1,0 +1,37 @@
+{
+  "id": "card",
+  "name": "Card",
+  "kind": "base",
+  "props": {
+    "elevation": {
+      "type": "enum",
+      "options": ["outlined", "raised"],
+      "default": "outlined"
+    }
+  },
+  "usage": {
+    "use": "관련 정보를 한 덩어리로 묶는 면(주문 요약, 정보 카드).",
+    "avoid": "카드 안에 카드를 넣지 않는다. 화면 전체를 카드 하나로 감싸지 않는다.",
+    "a11y": "카드 전체가 눌리는 경우 안쪽 버튼과 동작이 겹치지 않게 한다."
+  },
+  "code": {
+    "import": "@/components/ui/card",
+    "name": "Card"
+  },
+  "tree": {
+    "id": "n_crd000",
+    "type": "frame",
+    "name": "Card",
+    "w": "fill",
+    "layout": {
+      "dir": "col",
+      "gap": "{spacing.2}",
+      "pad": "{spacing.6}"
+    },
+    "fill": "{color.surface}",
+    "stroke": {
+      "color": "{color.border}"
+    },
+    "radius": "{radius.lg}"
+  }
+}

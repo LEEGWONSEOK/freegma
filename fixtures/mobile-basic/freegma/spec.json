@@ -1,0 +1,16 @@
+{
+  "platform": "mobile",
+  "target": "react-native",
+  "language": "typescript",
+  "styling": "stylesheet",
+  "components": {
+    "dir": "src/components"
+  },
+  "tokens": {
+    "output": "src/theme/tokens.ts",
+    "format": "ts-object"
+  },
+  "router": {
+    "kind": "expo-router"
+  }
+}

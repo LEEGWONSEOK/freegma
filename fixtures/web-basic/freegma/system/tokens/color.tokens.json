@@ -1,0 +1,84 @@
+{
+  "color": {
+    "primary": {
+      "$type": "color",
+      "$value": "{brand.600}",
+      "$description": "가장 중요한 행동 1개(구매·저장·다음)의 버튼 배경, 강조 가격.",
+      "$extensions": {
+        "freegma": {
+          "avoid": "긴 본문 글자, 넓은 배경 면."
+        }
+      }
+    },
+    "on-primary": {
+      "$type": "color",
+      "$value": "{gray.0}",
+      "$description": "color.primary 위에 놓이는 글자·아이콘."
+    },
+    "bg": {
+      "$type": "color",
+      "$value": "{gray.100}",
+      "$description": "화면 바탕.",
+      "$extensions": {
+        "freegma": {
+          "avoid": "카드·시트의 면(→ color.surface)."
+        }
+      }
+    },
+    "surface": {
+      "$type": "color",
+      "$value": "{gray.0}",
+      "$description": "카드·시트·내비게이션처럼 바탕 위에 올라오는 면."
+    },
+    "text": {
+      "$type": "color",
+      "$value": "{gray.900}",
+      "$description": "기본 글자."
+    },
+    "muted": {
+      "$type": "color",
+      "$value": "{gray.500}",
+      "$description": "보조 설명·메타 정보(카테고리, 날짜).",
+      "$extensions": {
+        "freegma": {
+          "avoid": "버튼 라벨, 꼭 읽어야 하는 정보."
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": "{gray.200}",
+      "$description": "구분선, 카드·입력창 테두리.",
+      "$extensions": {
+        "freegma": {
+          "avoid": "글자색."
+        }
+      }
+    },
+    "success": {
+      "$type": "color",
+      "$value": "{green.600}",
+      "$description": "완료·성공 상태(배송 완료)."
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "{amber.600}",
+      "$description": "주의가 필요한 상태(재고 적음).",
+      "$extensions": {
+        "freegma": {
+          "avoid": "작은 글자색(대비 부족)."
+        }
+      }
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "{red.600}",
+      "$description": "오류 문구, 삭제 같은 되돌릴 수 없는 행동.",
+      "$extensions": {
+        "freegma": {
+          "avoid": "단순 강조."
+        }
+      }
+    }
+  }
+}

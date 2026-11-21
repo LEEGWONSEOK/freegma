@@ -1,0 +1,65 @@
+{
+  "id": "cart-item",
+  "name": "CartItem",
+  "kind": "service",
+  "props": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "price": {
+      "type": "text",
+      "required": true
+    },
+    "qty": {
+      "type": "number",
+      "default": 1,
+      "min": 1
+    }
+  },
+  "usage": {
+    "use": "장바구니·주문 목록의 한 줄. 수량 조절 포함.",
+    "avoid": "상품 목록 격자에 쓰지 않는다(→ ProductCard).",
+    "a11y": "수량 −/+ 버튼에 «수량 줄이기/늘리기» 이름."
+  },
+  "code": {
+    "import": "@/components/cart-item",
+    "name": "CartItem"
+  },
+  "tree": {
+    "id": "n_cit000",
+    "type": "frame",
+    "name": "CartItem",
+    "w": "fill",
+    "layout": {
+      "dir": "row",
+      "gap": "{spacing.4}",
+      "pad": "{spacing.4}",
+      "align": "center"
+    },
+    "fill": "{color.surface}",
+    "stroke": {
+      "color": "{color.border}"
+    },
+    "radius": "{radius.md}",
+    "children": [
+      {
+        "id": "n_cit001",
+        "type": "image",
+        "name": "image",
+        "w": 72,
+        "h": 72,
+        "radius": "{radius.sm}",
+        "src": "assets/img-lamp.png"
+      },
+      {
+        "id": "n_cit002",
+        "type": "text",
+        "name": "title",
+        "text": "상품",
+        "textStyle": "{style.body}",
+        "weight": 600
+      }
+    ]
+  }
+}

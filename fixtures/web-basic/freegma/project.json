@@ -1,0 +1,7 @@
+{
+  "formatVersion": 1,
+  "name": "my-shop",
+  "platform": "web",
+  "domains": ["홈", "상품", "주문"],
+  "startScreen": "n_whome"
+}

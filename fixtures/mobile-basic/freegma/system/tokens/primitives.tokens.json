@@ -1,0 +1,85 @@
+{
+  "$description": "기초값 — 디자인에서 직접 쓰지 않고 의미 토큰이 가리킨다",
+  "brand": {
+    "50": {
+      "$type": "color",
+      "$value": "#F0F4FE"
+    },
+    "100": {
+      "$type": "color",
+      "$value": "#DCE6FC"
+    },
+    "300": {
+      "$type": "color",
+      "$value": "#9DB9F6"
+    },
+    "500": {
+      "$type": "color",
+      "$value": "#5182EF"
+    },
+    "600": {
+      "$type": "color",
+      "$value": "#2563EB"
+    },
+    "700": {
+      "$type": "color",
+      "$value": "#1E51C1"
+    },
+    "900": {
+      "$type": "color",
+      "$value": "#133276"
+    }
+  },
+  "gray": {
+    "0": {
+      "$type": "color",
+      "$value": "#FFFFFF"
+    },
+    "50": {
+      "$type": "color",
+      "$value": "#F9FAFB"
+    },
+    "100": {
+      "$type": "color",
+      "$value": "#F4F5F7"
+    },
+    "200": {
+      "$type": "color",
+      "$value": "#E5E7EB"
+    },
+    "400": {
+      "$type": "color",
+      "$value": "#9CA3AF"
+    },
+    "500": {
+      "$type": "color",
+      "$value": "#6B7280"
+    },
+    "700": {
+      "$type": "color",
+      "$value": "#374151"
+    },
+    "900": {
+      "$type": "color",
+      "$value": "#111827"
+    }
+  },
+  "green": {
+    "600": {
+      "$type": "color",
+      "$value": "#16A34A"
+    }
+  },
+  "amber": {
+    "600": {
+      "$type": "color",
+      "$value": "#D97706"
+    }
+  },
+  "red": {
+    "600": {
+      "$type": "color",
+      "$value": "#DC2626"
+    }
+  }
+}

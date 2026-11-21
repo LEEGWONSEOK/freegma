@@ -1,0 +1,28 @@
+{
+  "radius": {
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "썸네일·작은 요소"
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "버튼·입력창·상품 이미지"
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "카드·배너·시트"
+    }
+  }
+}

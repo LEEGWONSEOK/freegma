@@ -1,0 +1,62 @@
+{
+  "id": "product-card",
+  "name": "ProductCard",
+  "kind": "service",
+  "props": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "price": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "usage": {
+    "use": "상품 목록 격자의 한 칸. 누르면 상품 상세로.",
+    "avoid": "설명 문단을 넣지 않는다 — 상세 화면에서 보여 준다.",
+    "a11y": "이미지에 상품명을 대체 텍스트로."
+  },
+  "code": {
+    "import": "@/components/product-card",
+    "name": "ProductCard"
+  },
+  "tree": {
+    "id": "n_pcd000",
+    "type": "frame",
+    "name": "ProductCard",
+    "w": "fill",
+    "layout": {
+      "dir": "col",
+      "gap": "{spacing.2}"
+    },
+    "children": [
+      {
+        "id": "n_pcd001",
+        "type": "image",
+        "name": "image",
+        "w": "fill",
+        "h": 180,
+        "radius": "{radius.md}",
+        "src": "assets/img-lamp.png",
+        "fit": "cover"
+      },
+      {
+        "id": "n_pcd002",
+        "type": "text",
+        "name": "title",
+        "text": "상품명",
+        "textStyle": "{style.body}",
+        "weight": 600
+      },
+      {
+        "id": "n_pcd003",
+        "type": "text",
+        "name": "price",
+        "text": "89,000원",
+        "textStyle": "{style.body}",
+        "weight": 700
+      }
+    ]
+  }
+}

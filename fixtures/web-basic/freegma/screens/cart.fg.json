@@ -1,0 +1,78 @@
+{
+  "id": "n_wcart",
+  "type": "frame",
+  "name": "장바구니",
+  "role": "screen",
+  "route": "/cart",
+  "domain": "주문",
+  "code": {
+    "file": "src/pages/CartPage.tsx"
+  },
+  "w": 1440,
+  "h": 960,
+  "layout": {
+    "dir": "col"
+  },
+  "fill": "{color.bg}",
+  "children": [
+    {
+      "id": "n_wcnav",
+      "type": "instance",
+      "name": "내비게이션",
+      "of": "nav-bar",
+      "props": {
+        "title": "장바구니",
+        "back": true
+      },
+      "w": "fill"
+    },
+    {
+      "id": "n_wclst",
+      "type": "frame",
+      "name": "담은 상품",
+      "w": "fill",
+      "layout": {
+        "dir": "col",
+        "gap": "{spacing.3}",
+        "pad": "{spacing.12}"
+      },
+      "children": [
+        {
+          "id": "n_wci01",
+          "type": "instance",
+          "name": "상품 1",
+          "of": "cart-item",
+          "props": {
+            "title": "북유럽 스탠드 조명",
+            "price": "89,000원",
+            "qty": 1
+          },
+          "w": "fill"
+        },
+        {
+          "id": "n_wci02",
+          "type": "instance",
+          "name": "상품 2",
+          "of": "cart-item",
+          "props": {
+            "title": "린넨 쿠션 커버",
+            "price": "24,000원",
+            "qty": 2
+          },
+          "w": "fill"
+        },
+        {
+          "id": "n_wcord",
+          "type": "instance",
+          "name": "주문하기 버튼",
+          "of": "button",
+          "props": {
+            "label": "주문하기",
+            "variant": "primary"
+          },
+          "w": "fill"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "$value": "Pretendard"
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": {
+        "value": 13,
+        "unit": "px"
+      }
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": {
+        "value": 15,
+        "unit": "px"
+      }
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": {
+        "value": 17,
+        "unit": "px"
+      }
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      }
+    },
+    "2xl": {
+      "$type": "dimension",
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      }
+    }
+  },
+  "style": {
+    "display": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family}",
+        "fontSize": "{font.2xl}",
+        "fontWeight": 800,
+        "lineHeight": 1.2
+      },
+      "$description": "배너·첫 화면의 큰 제목. 화면당 1개."
+    },
+    "heading": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family}",
+        "fontSize": "{font.xl}",
+        "fontWeight": 700,
+        "lineHeight": 1.3
+      },
+      "$description": "페이지·섹션 제목."
+    },
+    "title": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family}",
+        "fontSize": "{font.lg}",
+        "fontWeight": 700,
+        "lineHeight": 1.35
+      },
+      "$description": "카드 제목, 가격 강조."
+    },
+    "body": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family}",
+        "fontSize": "{font.md}",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "$description": "본문·설명. 기본 스타일."
+    },
+    "caption": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{font.family}",
+        "fontSize": "{font.sm}",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      },
+      "$description": "보조 정보·메타(카테고리, 날짜)."
+    }
+  }
+}
