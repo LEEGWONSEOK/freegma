@@ -1,0 +1,119 @@
+{
+  "id": "n_mhome",
+  "type": "frame",
+  "name": "홈",
+  "role": "screen",
+  "route": "/",
+  "domain": "홈",
+  "code": {
+    "file": "app/index.tsx"
+  },
+  "w": 393,
+  "h": 852,
+  "layout": {
+    "dir": "col"
+  },
+  "fill": "{color.bg}",
+  "children": [
+    {
+      "id": "n_mhnav",
+      "type": "instance",
+      "name": "내비게이션",
+      "of": "nav-bar",
+      "props": {
+        "title": "my-shop"
+      },
+      "w": "fill"
+    },
+    {
+      "id": "n_mhbody",
+      "type": "frame",
+      "name": "본문",
+      "w": "fill",
+      "layout": {
+        "dir": "col",
+        "gap": "{spacing.8}",
+        "pad": "{spacing.4}"
+      },
+      "children": [
+        {
+          "id": "n_mhban",
+          "type": "frame",
+          "name": "메인 배너",
+          "w": "fill",
+          "layout": {
+            "dir": "col",
+            "gap": "{spacing.3}",
+            "pad": "{spacing.6}",
+            "align": "start",
+            "justify": "start"
+          },
+          "fill": "{color.primary}",
+          "radius": "{radius.lg}",
+          "children": [
+            {
+              "id": "n_mhbt1",
+              "type": "text",
+              "name": "제목",
+              "text": "겨울 조명 기획전",
+              "textStyle": "{style.display}",
+              "color": "{color.on-primary}"
+            },
+            {
+              "id": "n_mhbbt",
+              "type": "instance",
+              "name": "보러 가기 버튼",
+              "of": "button",
+              "props": {
+                "label": "보러 가기",
+                "variant": "inverse"
+              }
+            }
+          ]
+        },
+        {
+          "id": "n_mhrec",
+          "type": "text",
+          "name": "섹션 제목",
+          "text": "추천 상품",
+          "textStyle": "{style.heading}"
+        },
+        {
+          "id": "n_mhgrd",
+          "type": "frame",
+          "name": "상품 목록",
+          "w": "fill",
+          "layout": {
+            "dir": "row",
+            "gap": "{spacing.3}",
+            "wrap": true
+          },
+          "children": [
+            {
+              "id": "n_mhc01",
+              "type": "instance",
+              "name": "상품 카드 1",
+              "of": "product-card",
+              "props": {
+                "title": "북유럽 스탠드 조명",
+                "price": "89,000원"
+              },
+              "w": "fill"
+            },
+            {
+              "id": "n_mhc02",
+              "type": "instance",
+              "name": "상품 카드 2",
+              "of": "product-card",
+              "props": {
+                "title": "린넨 쿠션 커버",
+                "price": "24,000원"
+              },
+              "w": "fill"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

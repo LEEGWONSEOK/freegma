@@ -1,0 +1,7 @@
+{
+  "formatVersion": 1,
+  "name": "my-shop-app",
+  "platform": "mobile",
+  "domains": ["홈", "상품", "주문"],
+  "startScreen": "n_mhome"
+}

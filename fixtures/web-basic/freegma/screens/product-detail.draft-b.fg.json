@@ -1,0 +1,90 @@
+{
+  "id": "n_wpdtb",
+  "type": "frame",
+  "name": "상품 상세 시안 B",
+  "role": "draft",
+  "draftOf": "n_wpdtl",
+  "w": 1440,
+  "h": 960,
+  "layout": {
+    "dir": "col",
+    "pad": "{spacing.12}"
+  },
+  "fill": "{color.surface}",
+  "children": [
+    {
+      "id": "n_wdinf",
+      "type": "frame",
+      "name": "정보 카드 (가격 위로)",
+      "w": 480,
+      "layout": {
+        "dir": "col",
+        "gap": "{spacing.4}",
+        "pad": "{spacing.6}"
+      },
+      "fill": "{color.surface}",
+      "stroke": {
+        "color": "{color.border}"
+      },
+      "radius": "{radius.lg}",
+      "children": [
+        {
+          "id": "n_wdinf3",
+          "type": "text",
+          "name": "가격",
+          "text": "89,000원",
+          "textStyle": "{style.title}",
+          "color": "{color.primary}"
+        },
+        {
+          "id": "n_wdinf2",
+          "type": "text",
+          "name": "상품명",
+          "text": "북유럽 스탠드 조명",
+          "textStyle": "{style.heading}"
+        },
+        {
+          "id": "n_wdinf1",
+          "type": "text",
+          "name": "카테고리",
+          "text": "리빙 · 조명",
+          "textStyle": "{style.caption}",
+          "color": "{color.muted}"
+        },
+        {
+          "id": "n_wdinf5",
+          "type": "frame",
+          "name": "버튼 영역",
+          "w": "fill",
+          "layout": {
+            "dir": "row",
+            "gap": "{spacing.3}"
+          },
+          "children": [
+            {
+              "id": "n_wdinf6",
+              "type": "instance",
+              "name": "장바구니 담기 버튼",
+              "of": "button",
+              "props": {
+                "label": "장바구니 담기",
+                "variant": "primary"
+              },
+              "w": "fill"
+            },
+            {
+              "id": "n_wdinf7",
+              "type": "instance",
+              "name": "찜 버튼",
+              "of": "button",
+              "props": {
+                "label": "찜하기",
+                "variant": "ghost"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

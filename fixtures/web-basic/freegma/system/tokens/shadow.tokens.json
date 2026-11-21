@@ -1,0 +1,50 @@
+{
+  "shadow": {
+    "sm": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#11182714",
+        "offsetX": {
+          "unit": "px",
+          "value": 0
+        },
+        "offsetY": {
+          "unit": "px",
+          "value": 1
+        },
+        "blur": {
+          "unit": "px",
+          "value": 3
+        },
+        "spread": {
+          "unit": "px",
+          "value": 0
+        }
+      },
+      "$description": "살짝 떠 있는 요소"
+    },
+    "md": {
+      "$type": "shadow",
+      "$value": {
+        "color": "#1118271F",
+        "offsetX": {
+          "unit": "px",
+          "value": 0
+        },
+        "offsetY": {
+          "unit": "px",
+          "value": 8
+        },
+        "blur": {
+          "unit": "px",
+          "value": 24
+        },
+        "spread": {
+          "unit": "px",
+          "value": 0
+        }
+      },
+      "$description": "떠 있는 카드·팝오버·바텀시트"
+    }
+  }
+}

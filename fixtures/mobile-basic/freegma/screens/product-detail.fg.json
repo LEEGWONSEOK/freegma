@@ -1,0 +1,134 @@
+{
+  "id": "n_mpdtl",
+  "type": "frame",
+  "name": "상품 상세",
+  "role": "screen",
+  "route": "/products/[id]",
+  "domain": "상품",
+  "code": {
+    "file": "app/products/[id].tsx"
+  },
+  "w": 393,
+  "h": 852,
+  "layout": {
+    "dir": "col"
+  },
+  "fill": "{color.bg}",
+  "children": [
+    {
+      "id": "n_mpnav",
+      "type": "instance",
+      "name": "내비게이션",
+      "of": "nav-bar",
+      "props": {
+        "title": "상품 상세",
+        "back": true
+      },
+      "w": "fill"
+    },
+    {
+      "id": "n_mpbdy",
+      "type": "frame",
+      "name": "본문",
+      "w": "fill",
+      "layout": {
+        "dir": "col",
+        "gap": "{spacing.8}",
+        "pad": "{spacing.4}",
+        "align": "start"
+      },
+      "children": [
+        {
+          "id": "n_mpimg",
+          "type": "image",
+          "name": "상품 이미지",
+          "w": "fill",
+          "h": 300,
+          "radius": "{radius.lg}",
+          "src": "assets/img-lamp.png",
+          "fit": "cover",
+          "alt": "북유럽 스탠드 조명"
+        },
+        {
+          "id": "n_mpinf",
+          "type": "frame",
+          "name": "정보 카드",
+          "w": "fill",
+          "layout": {
+            "dir": "col",
+            "gap": "{spacing.4}",
+            "pad": "{spacing.6}"
+          },
+          "fill": "{color.surface}",
+          "radius": 0,
+          "children": [
+            {
+              "id": "n_mpinf1",
+              "type": "text",
+              "name": "카테고리",
+              "text": "리빙 · 조명",
+              "textStyle": "{style.caption}",
+              "color": "{color.muted}"
+            },
+            {
+              "id": "n_mpinf2",
+              "type": "text",
+              "name": "상품명",
+              "text": "북유럽 스탠드 조명",
+              "textStyle": "{style.heading}"
+            },
+            {
+              "id": "n_mpinf3",
+              "type": "text",
+              "name": "가격",
+              "text": "89,000원",
+              "textStyle": "{style.title}",
+              "color": "{color.primary}"
+            },
+            {
+              "id": "n_mpinf4",
+              "type": "text",
+              "name": "설명",
+              "text": "따뜻한 색감의 패브릭 갓과 원목 다리로 만든 스탠드 조명입니다.",
+              "textStyle": "{style.body}",
+              "color": "{color.muted}"
+            },
+            {
+              "id": "n_mpinf5",
+              "type": "frame",
+              "name": "버튼 영역",
+              "w": "fill",
+              "layout": {
+                "dir": "row",
+                "gap": "{spacing.3}"
+              },
+              "children": [
+                {
+                  "id": "n_mpinf6",
+                  "type": "instance",
+                  "name": "장바구니 담기 버튼",
+                  "of": "button",
+                  "props": {
+                    "label": "장바구니 담기",
+                    "variant": "primary"
+                  },
+                  "w": "fill"
+                },
+                {
+                  "id": "n_mpinf7",
+                  "type": "instance",
+                  "name": "찜 버튼",
+                  "of": "button",
+                  "props": {
+                    "label": "찜하기",
+                    "variant": "ghost"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

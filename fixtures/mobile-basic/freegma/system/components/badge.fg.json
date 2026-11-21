@@ -1,0 +1,49 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "kind": "base",
+  "props": {
+    "label": {
+      "type": "text",
+      "required": true
+    },
+    "tone": {
+      "type": "enum",
+      "options": ["neutral", "primary", "success", "danger"],
+      "default": "neutral"
+    }
+  },
+  "usage": {
+    "use": "상태·분류를 짧게(2~6자) 표시: 품절, NEW, 배송 완료.",
+    "avoid": "누를 수 있는 요소로 쓰지 않는다(그때는 Button ghost).",
+    "a11y": "뜻을 글자로 쓴다 — 색 점만 두지 않는다."
+  },
+  "code": {
+    "import": "@/components/badge",
+    "name": "Badge"
+  },
+  "tree": {
+    "id": "n_bdg000",
+    "type": "frame",
+    "name": "Badge",
+    "layout": {
+      "dir": "row",
+      "pad": [2, 10]
+    },
+    "fill": "{color.bg}",
+    "stroke": {
+      "color": "{color.border}"
+    },
+    "radius": 999,
+    "children": [
+      {
+        "id": "n_bdg001",
+        "type": "text",
+        "name": "label",
+        "text": "품절",
+        "textStyle": "{style.caption}",
+        "weight": 600
+      }
+    ]
+  }
+}

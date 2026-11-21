@@ -1,0 +1,18 @@
+{
+  "platform": "web",
+  "target": "react",
+  "language": "typescript",
+  "styling": "tailwind@4",
+  "components": {
+    "library": "shadcn",
+    "dir": "src/components/ui"
+  },
+  "tokens": {
+    "output": "src/styles/tokens.css",
+    "format": "css-vars"
+  },
+  "router": {
+    "kind": "react-router",
+    "file": "src/router.tsx"
+  }
+}

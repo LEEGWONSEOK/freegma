@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!docs/mockup", "!**/*.md", "!**/fixtures/**/*.fg.json"]
+    "includes": ["**", "!docs/mockup", "!**/*.md", "!fixtures"]
   },
   "formatter": {
     "enabled": true,

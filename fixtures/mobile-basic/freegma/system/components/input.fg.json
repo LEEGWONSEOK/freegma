@@ -1,0 +1,79 @@
+{
+  "id": "input",
+  "name": "Input",
+  "kind": "base",
+  "props": {
+    "label": {
+      "type": "text",
+      "required": true
+    },
+    "placeholder": {
+      "type": "text"
+    },
+    "state": {
+      "type": "enum",
+      "options": ["default", "focus", "error", "disabled"],
+      "default": "default"
+    },
+    "help": {
+      "type": "text"
+    }
+  },
+  "states": ["default", "focus", "error", "disabled"],
+  "usage": {
+    "use": "한 줄 텍스트 입력. 라벨은 항상 입력칸 위에 보이게 둔다.",
+    "avoid": "placeholder를 라벨 대신 쓰지 않는다. 여러 줄 입력에 쓰지 않는다.",
+    "a11y": "오류는 색(color.danger)과 문구를 함께 — 색만으로 알리지 않는다."
+  },
+  "code": {
+    "import": "@/components/input",
+    "name": "Input"
+  },
+  "tree": {
+    "id": "n_inp000",
+    "type": "frame",
+    "name": "Input",
+    "w": "fill",
+    "layout": {
+      "dir": "col",
+      "gap": 6
+    },
+    "children": [
+      {
+        "id": "n_inp001",
+        "type": "text",
+        "name": "label",
+        "text": "이메일",
+        "textStyle": "{style.caption}",
+        "weight": 600
+      },
+      {
+        "id": "n_inp002",
+        "type": "frame",
+        "name": "box",
+        "w": "fill",
+        "h": 44,
+        "layout": {
+          "dir": "row",
+          "pad": [0, "{spacing.4}"],
+          "align": "center"
+        },
+        "fill": "{color.surface}",
+        "stroke": {
+          "color": "{color.border}"
+        },
+        "radius": "{radius.md}",
+        "children": [
+          {
+            "id": "n_inp003",
+            "type": "text",
+            "name": "placeholder",
+            "text": "name@example.com",
+            "textStyle": "{style.body}",
+            "color": "{color.muted}"
+          }
+        ]
+      }
+    ]
+  }
+}

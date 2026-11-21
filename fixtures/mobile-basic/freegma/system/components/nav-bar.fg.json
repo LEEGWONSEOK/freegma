@@ -1,0 +1,51 @@
+{
+  "id": "nav-bar",
+  "name": "NavBar",
+  "kind": "service",
+  "props": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "back": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "usage": {
+    "use": "모든 화면 맨 위. 홈은 로고, 하위 화면은 뒤로 가기 + 제목.",
+    "avoid": "한 화면에 두 개 두지 않는다.",
+    "a11y": "뒤로 버튼의 접근성 이름은 «뒤로»."
+  },
+  "code": {
+    "import": "@/components/nav-bar",
+    "name": "NavBar"
+  },
+  "tree": {
+    "id": "n_nav000",
+    "type": "frame",
+    "name": "NavBar",
+    "w": "fill",
+    "h": 52,
+    "layout": {
+      "dir": "row",
+      "gap": "{spacing.3}",
+      "pad": [0, "{spacing.4}"],
+      "align": "center"
+    },
+    "fill": "{color.surface}",
+    "stroke": {
+      "color": "{color.border}",
+      "sides": ["bottom"]
+    },
+    "children": [
+      {
+        "id": "n_nav001",
+        "type": "text",
+        "name": "title",
+        "text": "my-shop",
+        "textStyle": "{style.title}"
+      }
+    ]
+  }
+}

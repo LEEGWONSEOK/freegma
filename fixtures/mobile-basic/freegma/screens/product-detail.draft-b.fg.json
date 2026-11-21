@@ -1,0 +1,87 @@
+{
+  "id": "n_mpdtb",
+  "type": "frame",
+  "name": "상품 상세 시안 B",
+  "role": "draft",
+  "draftOf": "n_mpdtl",
+  "w": 393,
+  "h": 852,
+  "layout": {
+    "dir": "col",
+    "pad": "{spacing.4}"
+  },
+  "fill": "{color.surface}",
+  "children": [
+    {
+      "id": "n_mdinf",
+      "type": "frame",
+      "name": "정보 카드 (가격 위로)",
+      "w": "fill",
+      "layout": {
+        "dir": "col",
+        "gap": "{spacing.4}",
+        "pad": "{spacing.6}"
+      },
+      "fill": "{color.surface}",
+      "radius": 0,
+      "children": [
+        {
+          "id": "n_mdinf3",
+          "type": "text",
+          "name": "가격",
+          "text": "89,000원",
+          "textStyle": "{style.title}",
+          "color": "{color.primary}"
+        },
+        {
+          "id": "n_mdinf2",
+          "type": "text",
+          "name": "상품명",
+          "text": "북유럽 스탠드 조명",
+          "textStyle": "{style.heading}"
+        },
+        {
+          "id": "n_mdinf1",
+          "type": "text",
+          "name": "카테고리",
+          "text": "리빙 · 조명",
+          "textStyle": "{style.caption}",
+          "color": "{color.muted}"
+        },
+        {
+          "id": "n_mdinf5",
+          "type": "frame",
+          "name": "버튼 영역",
+          "w": "fill",
+          "layout": {
+            "dir": "row",
+            "gap": "{spacing.3}"
+          },
+          "children": [
+            {
+              "id": "n_mdinf6",
+              "type": "instance",
+              "name": "장바구니 담기 버튼",
+              "of": "button",
+              "props": {
+                "label": "장바구니 담기",
+                "variant": "primary"
+              },
+              "w": "fill"
+            },
+            {
+              "id": "n_mdinf7",
+              "type": "instance",
+              "name": "찜 버튼",
+              "of": "button",
+              "props": {
+                "label": "찜하기",
+                "variant": "ghost"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
