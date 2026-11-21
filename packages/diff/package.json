@@ -1,0 +1,17 @@
+{
+  "name": "@freegma/diff",
+  "version": "0.0.0",
+  "private": true,
+  "description": "노드 id 단위 변경 비교, 커밋 메시지 생성",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@freegma/schema": "workspace:*",
+    "@freegma/core": "workspace:*"
+  }
+}

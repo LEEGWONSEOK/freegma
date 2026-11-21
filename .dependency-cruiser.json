@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sverweij/dependency-cruiser/main/src/schema/configuration.schema.json",
+  "forbidden": [
+    {
+      "name": "schema-is-base",
+      "comment": "schema는 맨 아래 — 다른 패키지를 import하지 않는다 (spec §3)",
+      "severity": "error",
+      "from": { "path": "^packages/schema/" },
+      "to": { "path": "^packages/", "pathNot": "^packages/schema/" }
+    },
+    {
+      "name": "core-uses-schema-only",
+      "comment": "core → schema만",
+      "severity": "error",
+      "from": { "path": "^packages/core/" },
+      "to": { "path": "^packages/", "pathNot": "^packages/(schema|core)/" }
+    },
+    {
+      "name": "diff-uses-core-only",
+      "comment": "diff → core·schema만",
+      "severity": "error",
+      "from": { "path": "^packages/diff/" },
+      "to": { "path": "^packages/", "pathNot": "^packages/(schema|core|diff)/" }
+    },
+    {
+      "name": "style-uses-core-only",
+      "comment": "style → core·schema만 (codegen이 style을 쓰므로 반대 방향 금지)",
+      "severity": "error",
+      "from": { "path": "^packages/style/" },
+      "to": { "path": "^packages/", "pathNot": "^packages/(schema|core|style)/" }
+    },
+    {
+      "name": "codegen-uses-style-core",
+      "comment": "codegen → style·core·schema만 (spec §6: 캔버스와 웹 코드가 같은 style을 거친다)",
+      "severity": "error",
+      "from": { "path": "^packages/codegen/" },
+      "to": { "path": "^packages/", "pathNot": "^packages/(schema|core|style|codegen)/" }
+    },
+    {
+      "name": "packages-not-to-apps",
+      "comment": "packages/*는 apps/*를 import하지 않는다",
+      "severity": "error",
+      "from": { "path": "^packages/" },
+      "to": { "path": "^apps/" }
+    },
+    {
+      "name": "no-electron-in-packages",
+      "comment": "Electron API는 apps/desktop에서만 (spec §0-1, §12)",
+      "severity": "error",
+      "from": { "path": "^packages/" },
+      "to": { "path": "^electron$|(^|/)node_modules/electron/" }
+    },
+    {
+      "name": "no-fs-in-packages",
+      "comment": "packages/*는 Node·브라우저 어디서나 돌아야 한다. 파일 접근은 core/io 인터페이스로 (spec §3). 테스트 파일은 예외",
+      "severity": "error",
+      "from": { "path": "^packages/", "pathNot": "\\.test\\.ts$" },
+      "to": {
+        "dependencyTypes": ["core"],
+        "path": "^(node:)?(fs|fs/promises|child_process|worker_threads)$"
+      }
+    },
+    {
+      "name": "no-circular",
+      "severity": "error",
+      "from": {},
+      "to": { "circular": true }
+    },
+    {
+      "name": "not-to-unresolvable",
+      "comment": "찾을 수 없는 import(오타·설치 누락)",
+      "severity": "error",
+      "from": { "path": "^(packages|apps)/" },
+      "to": { "couldNotResolve": true }
+    }
+  ],
+  "options": {
+    "doNotFollow": { "path": "node_modules" },
+    "exclude": { "path": "(^|/)node_modules/" },
+    "tsPreCompilationDeps": true,
+    "combinedDependencies": true,
+    "enhancedResolveOptions": {
+      "exportsFields": ["exports"],
+      "conditionNames": ["import", "default"],
+      "extensions": [".ts", ".tsx", ".js", ".mjs", ".json"]
+    }
+  }
+}

@@ -4,3 +4,10 @@ packages:
 
 # package.json engines(Node 24)와 맞지 않으면 설치를 멈춘다
 engineStrict: true
+
+# dependency-cruiser는 TypeScript 7의 API를 아직 못 쓴다(6 또는 7.1+ 지원).
+# 저장소 컴파일러는 7로 두고, dependency-cruiser에게만 6을 붙여 준다. (T0-5)
+packageExtensions:
+  dependency-cruiser:
+    dependencies:
+      typescript: ^6.0.0
