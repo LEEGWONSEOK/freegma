@@ -10,14 +10,18 @@
     "pnpm": ">=12"
   },
   "scripts": {
-    "typecheck": "pnpm -r --if-present run typecheck",
+    "check": "pnpm lint && pnpm typecheck && pnpm test",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "typecheck": "tsc -p tsconfig.json && pnpm -r --if-present run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.8",
     "@types/node": "^24.19.2",
-    "typescript": "7.0.2"
+    "typescript": "7.0.2",
+    "vitest": "5.1.1"
   }
 }

@@ -20,7 +20,7 @@
 ## 진행 요약
 | 단계 | 내용 | 작업 수 | 끝 |
 |---|---|---|---|
-| P0 | 모노레포 뼈대 | 6 | 3 |
+| P0 | 모노레포 뼈대 | 6 | 4 |
 | P1 | 스키마·문서 모델 (화면 없이) | 9 | 0 |
 | P2 | 데스크톱 앱 뼈대 · 프로젝트 만들기 | 12 | 0 |
 | P3 | 캔버스 · 화면 목록 | 13 | 0 |
@@ -30,7 +30,7 @@
 | P7 | 개발자 모드 · 화면↔코드 | 12 | 0 |
 | P8 | 프로토타입 · 흐름 보기 | 5 | 0 |
 | P9 | 성능·배포 | 6 | 0 |
-| | **합계** | **98** | **3** |
+| | **합계** | **98** | **4** |
 
 **큰 흐름(무엇이 언제 동작하나)**
 1. P0~P1: 화면 없이 파일 형식·직렬화·op·되돌리기 완성
@@ -62,10 +62,11 @@
   - 완료 조건: `pnpm lint` 통과, 일부러 `any`를 넣으면 실패.
   - 메모: Biome 2.6.8. 2.6부터 `recommended: true` 대신 `preset: "recommended"`(biome migrate로 변환), 폴더 제외는 `!docs/mockup`(뒤 `/**` 없이). 2.6은 마크다운도 포맷해서 `!**/*.md`로 문서는 제외. 임시 파일로 확인 — `any` → noExplicitAny, `export default` → noDefaultExport 오류, `vite.config.ts`의 기본 export는 허용, 들여쓰기·따옴표가 틀린 파일은 format 오류 후 `pnpm format`으로 고쳐짐. 스크립트: `lint`(검사만), `lint:fix`(고칠 수 있는 것 고침), `format`.
 
-- [ ] **T0-4 Vitest**
+- [x] **T0-4 Vitest** — 2026-11-21 · 5c77633
   - 의존: T0-2 · 참고: spec §11
   - 할 일: 워크스페이스 Vitest 설정, `pnpm test`, 루트 `pnpm check` = lint + typecheck + test.
   - 완료 조건: 예시 테스트 1개 통과, `pnpm check` 통과.
+  - 메모: Vitest 5.1.1, `test.projects` = `tests/`(이름 workspace) + `packages/*` + `apps/*`. 예시 테스트는 `tests/workspace.test.ts`(Node 24·pnpm 고정 확인, 2개). 루트 `tsconfig.json`으로 tests·설정 파일도 타입 검사. 임시 패키지로 확인 — 패키지의 `*.test.ts`가 따로 설정 없이 함께 돌고, 실패하는 테스트가 있으면 `pnpm check` exit 1. 각 패키지는 필요할 때만 자기 `vitest.config.ts`를 둔다.
 
 - [ ] **T0-5 패키지 자리 만들기 + 의존 방향 검사**
   - 의존: T0-4 · 참고: spec §3
