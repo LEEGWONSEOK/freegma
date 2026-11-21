@@ -20,7 +20,7 @@
 ## 진행 요약
 | 단계 | 내용 | 작업 수 | 끝 |
 |---|---|---|---|
-| P0 | 모노레포 뼈대 | 6 | 2 |
+| P0 | 모노레포 뼈대 | 6 | 3 |
 | P1 | 스키마·문서 모델 (화면 없이) | 9 | 0 |
 | P2 | 데스크톱 앱 뼈대 · 프로젝트 만들기 | 12 | 0 |
 | P3 | 캔버스 · 화면 목록 | 13 | 0 |
@@ -30,7 +30,7 @@
 | P7 | 개발자 모드 · 화면↔코드 | 12 | 0 |
 | P8 | 프로토타입 · 흐름 보기 | 5 | 0 |
 | P9 | 성능·배포 | 6 | 0 |
-| | **합계** | **98** | **2** |
+| | **합계** | **98** | **3** |
 
 **큰 흐름(무엇이 언제 동작하나)**
 1. P0~P1: 화면 없이 파일 형식·직렬화·op·되돌리기 완성
@@ -56,10 +56,11 @@
   - 완료 조건: 빈 패키지들에서 `pnpm typecheck` 통과.
   - 메모: TypeScript 7.0.2(네이티브 컴파일러). 패키지가 아직 없어(T0-5에서 생성) 임시 패키지로 확인 — 정상 코드는 통과, 암묵적 any·`xs[0]`을 string에 넣기는 TS7006·TS2322로 실패. 각 패키지는 `{"extends": "../../tsconfig.base.json", "compilerOptions": {"types": [...]}}` + `"typecheck": "tsc -p tsconfig.json"` 스크립트를 둔다(T0-5에서 적용). 루트 `pnpm typecheck` = `pnpm -r --if-present run typecheck`.
 
-- [ ] **T0-3 Biome**
+- [x] **T0-3 Biome** — 2026-11-21 · f6eb418
   - 의존: T0-1 · 참고: spec §12
   - 할 일: `biome.json`(포맷·린트), `any` 금지·기본 export 금지 규칙, `pnpm lint`·`pnpm format`.
   - 완료 조건: `pnpm lint` 통과, 일부러 `any`를 넣으면 실패.
+  - 메모: Biome 2.6.8. 2.6부터 `recommended: true` 대신 `preset: "recommended"`(biome migrate로 변환), 폴더 제외는 `!docs/mockup`(뒤 `/**` 없이). 2.6은 마크다운도 포맷해서 `!**/*.md`로 문서는 제외. 임시 파일로 확인 — `any` → noExplicitAny, `export default` → noDefaultExport 오류, `vite.config.ts`의 기본 export는 허용, 들여쓰기·따옴표가 틀린 파일은 format 오류 후 `pnpm format`으로 고쳐짐. 스크립트: `lint`(검사만), `lint:fix`(고칠 수 있는 것 고침), `format`.
 
 - [ ] **T0-4 Vitest**
   - 의존: T0-2 · 참고: spec §11
