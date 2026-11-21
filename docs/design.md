@@ -367,6 +367,7 @@ my-shop/                      ← 서비스 저장소 루트
     "children": [ { "id": "n_2pq1", "type": "instance", "of": "button",
                     "props": { "label": "장바구니 담기", "variant": "primary" } } ] }
   ```
+- **노드 칸**: 노드 타입은 `frame`·`rect`·`text`·`image`·`instance`. `id`·`type`은 필수, `name`은 선택(없으면 컴포넌트 이름·타입·글자 내용을 대신 보여 줌). 모르는 키는 거절한다(오타를 바로 알리기 위해). 스키마: `packages/schema/src/node.ts`.
 - **화면 프레임**(§2-7): 최상위 프레임에 역할·라우트·코드 파일을 둔다. 반영 여부는 여기 쓰지 않는다(코드 커밋의 Design-Ref로 판단).
   ```json
   { "id": "n_7k2p", "type": "frame", "name": "쿠폰함",
