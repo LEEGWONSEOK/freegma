@@ -1,1 +1,15 @@
+# 로컬 참고 자료
 docs/ref/
+
+# 의존성·빌드 산출물
+node_modules/
+dist/
+out/
+*.tsbuildinfo
+
+# 로그·OS
+*.log
+.DS_Store
+
+# Claude Code 개인 설정
+.claude/settings.local.json
