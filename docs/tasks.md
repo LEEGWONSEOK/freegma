@@ -20,7 +20,7 @@
 ## 진행 요약
 | 단계 | 내용 | 작업 수 | 끝 |
 |---|---|---|---|
-| P0 | 모노레포 뼈대 | 6 | 4 |
+| P0 | 모노레포 뼈대 | 6 | 5 |
 | P1 | 스키마·문서 모델 (화면 없이) | 9 | 0 |
 | P2 | 데스크톱 앱 뼈대 · 프로젝트 만들기 | 12 | 0 |
 | P3 | 캔버스 · 화면 목록 | 13 | 0 |
@@ -30,7 +30,7 @@
 | P7 | 개발자 모드 · 화면↔코드 | 12 | 0 |
 | P8 | 프로토타입 · 흐름 보기 | 5 | 0 |
 | P9 | 성능·배포 | 6 | 0 |
-| | **합계** | **98** | **4** |
+| | **합계** | **98** | **5** |
 
 **큰 흐름(무엇이 언제 동작하나)**
 1. P0~P1: 화면 없이 파일 형식·직렬화·op·되돌리기 완성
@@ -68,10 +68,11 @@
   - 완료 조건: 예시 테스트 1개 통과, `pnpm check` 통과.
   - 메모: Vitest 5.1.1, `test.projects` = `tests/`(이름 workspace) + `packages/*` + `apps/*`. 예시 테스트는 `tests/workspace.test.ts`(Node 24·pnpm 고정 확인, 2개). 루트 `tsconfig.json`으로 tests·설정 파일도 타입 검사. 임시 패키지로 확인 — 패키지의 `*.test.ts`가 따로 설정 없이 함께 돌고, 실패하는 테스트가 있으면 `pnpm check` exit 1. 각 패키지는 필요할 때만 자기 `vitest.config.ts`를 둔다.
 
-- [ ] **T0-5 패키지 자리 만들기 + 의존 방향 검사**
+- [x] **T0-5 패키지 자리 만들기 + 의존 방향 검사** — 2026-11-21 · 2ad66fb
   - 의존: T0-4 · 참고: spec §3
   - 할 일: `packages/{schema,core,diff,codegen,style,mcp-tools}` 빈 패키지(`src/index.ts`), 의존 방향 규칙(dependency-cruiser 또는 Biome `noRestrictedImports`). `packages/*`에서 `electron` import 금지.
   - 완료 조건: `core`에서 `mcp-tools`를 import하면 `pnpm check` 실패, 지우면 통과.
+  - 메모: dependency-cruiser 18.8.0 선택(패키지별 허용 방향을 표현하려면 Biome 규칙으로는 부족). TS 7 API를 아직 못 써서 `pnpm-workspace.yaml`의 `packageExtensions`로 dependency-cruiser에만 TypeScript 6.0.3을 붙임 — 저장소 `tsc`는 7.0.2 그대로. 패키지는 `exports: ./src/index.ts`(소스 직접 참조), 허용된 의존만 `workspace:*`. 확인 — core → mcp-tools: 의존 미선언이면 `not-to-unresolvable`, 선언해도 `core-uses-schema-only`로 실패 / core → schema 통과 / packages의 `node:fs` 실패, `*.test.ts`에선 통과 / `electron` 실패 / packages → apps 실패. `pnpm deps`는 있는 폴더만 검사(`apps/`는 T2-1에서 생기면 자동 포함). `apps/` 빈 자리는 Vitest projects glob이 숨김 파일까지 잡아 두지 않음.
 
 - [ ] **T0-6 CLAUDE.md + pre-commit 훅**
   - 의존: T0-5 · 참고: spec §12
