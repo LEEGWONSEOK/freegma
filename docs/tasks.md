@@ -21,7 +21,7 @@
 | 단계 | 내용 | 작업 수 | 끝 |
 |---|---|---|---|
 | P0 | 모노레포 뼈대 | 6 | 6 |
-| P1 | 스키마·문서 모델 (화면 없이) | 9 | 1 |
+| P1 | 스키마·문서 모델 (화면 없이) | 9 | 2 |
 | P2 | 데스크톱 앱 뼈대 · 프로젝트 만들기 | 12 | 0 |
 | P3 | 캔버스 · 화면 목록 | 13 | 0 |
 | P4 | 디자인 시스템·토큰·컴포넌트 | 12 | 0 |
@@ -30,7 +30,7 @@
 | P7 | 개발자 모드 · 화면↔코드 | 12 | 0 |
 | P8 | 프로토타입 · 흐름 보기 | 5 | 0 |
 | P9 | 성능·배포 | 6 | 0 |
-| | **합계** | **98** | **7** |
+| | **합계** | **98** | **8** |
 
 **큰 흐름(무엇이 언제 동작하나)**
 1. P0~P1: 화면 없이 파일 형식·직렬화·op·되돌리기 완성
@@ -88,10 +88,11 @@
   - 완료 조건: design §3 노드 예시 JSON이 검증 통과, 틀린 타입이면 어느 경로가 틀렸는지 담은 오류.
   - 메모: zod 4.6.7, `packages/schema/src/{values,layout,style,node,issues}.ts`. 재귀(frame.children)는 TypeScript가 추론하지 못해 `FrameNode`·`Node` 타입을 직접 선언하고 `z.lazy`로 연결 — 그래도 `discriminatedUnion`이라 오류 경로가 정확함. 결정: ① `name`은 선택(design §3 예시의 인스턴스에 name 없음 → design §3에 명시) ② `strictObject`로 모르는 키 거절, 오류 경로는 그 키(`fil`) ③ 화면 칸(role·route·domain·code·draftOf)은 T1-2, 인터랙션은 T8-1에서 더함 ④ 원시 색(#hex)·숫자 길이는 허용(사람 편집용, 검사 규칙 T4-10이 표시). `tsconfig.base.json`에 `allowImportingTsExtensions`. 테스트 12개: design §3 예시·5종 노드 통과, 타입·컴포넌트 id·토큰 꼴·`14px`·오타 키·빈 이름·id·음수·굵기·이미지 경로·3단 깊이 오류 경로 확인. zod 기본 오류 문구(enum 등)는 영어 — 필요하면 `z.config(z.locales.ko())` 검토.
 
-- [ ] **T1-2 프로젝트 파일 스키마**
+- [x] **T1-2 프로젝트 파일 스키마** — 2026-11-21 · 6f573a7
   - 의존: T1-1 · 참고: design §3, §2-1-1, §7
   - 할 일: `project.json`(formatVersion, platform, 도메인 순서), `screens/*.fg.json`(화면이면 `role`·`route`·`domain`·`code.file`, 시안이면 `draftOf`), `spec.json`(스펙·`router`), 디자인 시스템 파일(`system/system.json`, `system/tokens/*.tokens.json` — 기초값·의미 토큰·글자 스타일, `$description`·`$extensions.freegma.avoid`), 컴포넌트 파일(`system/components/*.fg.json` — props·variants·states·usage·`code` 연결). 참고: design-system §4.
   - 완료 조건: 각 스키마마다 맞는 예시·틀린 예시 테스트.
+  - 메모: `packages/schema/src/{project,spec,system,tokens,component}.ts` + 테스트 18개(합계 30). 문서 예시(design §3 화면 프레임, §7 spec.json, design-system §4-1·4-2 다섯 토큰 파일·§4-3 Button)는 모두 통과. 결정: ① 토큰 파일은 zod union 대신 직접 트리를 걸어 검사(경로가 `color.primary.$value`로 정확), `$type`은 토큰마다 필수(그룹 상속 안 함 → design-system §4-2에 명시) ② 화면 칸 규칙: screen은 route 필수, draft는 draftOf 필수·route·code 금지, 역할 없으면 셋 다 금지 ③ spec은 플랫폼별 target(web: react·vue / mobile: react-native·flutter·swiftui·compose), `router` 칸 추가(design §7 예시에 반영) ④ 컴포넌트는 enum 기본값·`code.props`의 `$속성`·`limits`의 «속성=값»이 실제 props와 맞는지 검사 ⑤ 경로(`code.file`·`tokens.output` 등)는 저장소 안 상대 경로만(`/`·`..` 금지).
 
 - [ ] **T1-3 안정된 직렬화**
   - 의존: T1-2 · 참고: design §3, spec §5
