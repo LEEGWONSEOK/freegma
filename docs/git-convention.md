@@ -1,21 +1,29 @@
 # freegma Git 규칙 (브랜치 · 커밋 · PR)
 
 > 상태: 확정(개정 0) | 작성: 2026-11-21 | 적용: 사람·AI(Claude Code) 모두
-> 한 줄 요약: **GitHub Flow**(main + 작업 브랜치 + PR)로 개발하고, 커밋 메시지는 `<type>(<scope>): <subject>` 형식(nohack.tistory.com/17 컨벤션)으로 쓴다. 커밋·PR에 AI 서명 줄을 넣지 않는다.
+> 한 줄 요약: **GitHub Flow + dev**(작업 브랜치 → dev로 PR, 릴리스 때 dev → main)로 개발하고, 커밋 메시지는 `<type>(<scope>): <subject>` 형식(nohack.tistory.com/17 컨벤션)으로 쓴다. 커밋·PR에 AI 서명 줄을 넣지 않는다.
 
-## 1. 브랜치 전략: GitHub Flow
+## 1. 브랜치 전략: GitHub Flow + dev
+GitHub Flow(작업 브랜치 + PR)에 개발 통합 브랜치 `dev`를 하나 더 둔다.
 ```
-main ──●────────────●────────────●──   항상 빌드·실행되는 상태
-        \          /  \          /
-         feat/T0-1-node-pnpm    fix/T2-8-atomic-write
-         (작업 → 커밋 → push → PR → 리뷰 → main에 병합 → 브랜치 삭제)
+main ──●──────────────────────────●──   릴리스(배포한 상태). 태그 v0.1.0 …
+        \                        / 릴리스 PR (dev → main)
+dev  ────●──────●──────●─────────●────   개발 통합. 항상 빌드·실행되는 상태
+          \    / \    /
+   feat/T0-1-…    fix/T2-8-…            작업 브랜치 (dev에서 만들고 dev로 PR)
 ```
-1. **main은 항상 동작하는 상태**다. main에 직접 커밋·push하지 않는다.
-2. 작업 하나(`docs/tasks.md`의 T 하나)마다 main에서 **작업 브랜치**를 만든다.
-3. 작업 브랜치에 커밋하고 **원격에 push**한다(자주 push해도 된다).
-4. 작업이 끝나면(완료 조건 통과) **PR**을 연다. PR은 작업 하나만 담는다.
-5. 리뷰·확인 후 **main에 병합**하고 작업 브랜치를 지운다.
-6. 병합 뒤 다음 작업은 다시 최신 main에서 브랜치를 만든다.
+| 브랜치 | 역할 | 누가 병합하나 |
+|---|---|---|
+| `main` | 릴리스된 상태만. 직접 커밋·push 금지 | 사람 (릴리스 PR) |
+| `dev` | 개발 통합. 기본 브랜치. 직접 커밋·push 금지 | 사람 (작업 PR) |
+| `<type>/<작업 id>-<설명>` | 작업 하나 | — |
+
+1. 작업 하나(`docs/tasks.md`의 T 하나)마다 **최신 dev에서** 작업 브랜치를 만든다.
+2. 작업 브랜치에 커밋하고 원격에 push한다(자주 push해도 된다).
+3. 작업이 끝나면(완료 조건 통과) **dev로 PR**을 연다. PR은 작업 하나만 담는다.
+4. 리뷰·확인 후 dev에 병합(Squash)하고 작업 브랜치를 지운다.
+5. **릴리스**: 내보낼 때가 되면 `dev → main` PR을 열어 병합(Merge commit)하고 main에 버전 태그(`v0.1.0`)를 단다.
+6. **급한 수정(hotfix)**: 릴리스된 main에 문제가 있으면 main에서 `fix/…` 브랜치 → main으로 PR → 병합 후 main을 dev에 다시 병합해 둘을 맞춘다.
 
 ### 브랜치 이름
 ```
@@ -115,14 +123,15 @@ chore(deps): electron 45.1로 올림
 ## 3. PR
 - **제목**: 커밋 header와 같은 형식(`feat(core): 안정된 직렬화 구현`). 작업 id는 본문에.
 - **본문**: `.github/pull_request_template.md`를 채운다 — 작업 id, 한 일, 완료 조건 확인 결과(명령과 결과), 화면이면 목업과 비교한 스크린샷.
-- **병합 방식**: **Squash and merge**. main에는 PR 하나 = 커밋 하나가 남고, 그 커밋 메시지는 PR 제목 + 본문 요약(§2 형식)으로 정리한다. 작업 브랜치의 중간 커밋은 자유롭게 써도 되지만 §2 형식을 지킨다.
-- 병합 후 작업 브랜치 삭제.
+- **작업 PR(→ dev)의 병합 방식**: **Squash and merge**. dev에는 PR 하나 = 커밋 하나가 남고, 그 커밋 메시지는 PR 제목 + 본문 요약(§2 형식)으로 정리한다. 작업 브랜치의 중간 커밋은 자유롭게 써도 되지만 §2 형식을 지킨다.
+- **릴리스 PR(dev → main)의 병합 방식**: **Create a merge commit**(squash하면 dev와 main 기록이 갈라진다). 제목 `chore(release): v0.1.0`, 본문에 들어간 작업 목록.
+- 병합 후 작업 브랜치 삭제(dev·main은 지우지 않음).
 - PR 본문에도 AI 서명 줄을 넣지 않는다.
 
 ## 4. AI(Claude Code)가 지킬 것
-1. 작업을 시작하면 **최신 main에서 브랜치를 만든다**(`git switch main && git pull && git switch -c <브랜치>`). main에 직접 커밋·push하지 않는다.
+1. 작업을 시작하면 **최신 dev에서 브랜치를 만든다**(`git switch dev && git pull && git switch -c <브랜치>`). dev·main에 직접 커밋·push하지 않는다.
 2. 커밋은 §2 형식, footer에 `Ref: <작업 id>`. AI 서명 줄 금지.
-3. 완료 조건(`pnpm check` 등)을 통과한 뒤 push하고 PR을 연다(`gh pr create`). 실패하면 PR을 열지 않고 `docs/tasks.md`에 `[!]`와 이유를 적는다.
-4. **main 병합은 사람이 한다.** AI는 병합하지 않는다.
+3. 완료 조건(`pnpm check` 등)을 통과한 뒤 push하고 **dev로** PR을 연다(`gh pr create --base dev`). 실패하면 PR을 열지 않고 `docs/tasks.md`에 `[!]`와 이유를 적는다.
+4. **병합은 사람이 한다**(dev·main 모두). AI는 병합하지 않고, 릴리스 PR(dev → main)은 사람이 요청할 때만 연다.
 5. `git push --force`, `git reset --hard`, 원격 브랜치 삭제는 사람이 요청했을 때만.
 6. 작업 상태 표시(`[~]`·`[x]`·날짜·커밋 해시) 변경도 같은 PR에 포함한다.

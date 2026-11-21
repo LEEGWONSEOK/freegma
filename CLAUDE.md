@@ -8,7 +8,7 @@
 - `docs/git-convention.md` — 브랜치·커밋·PR 규칙
 
 ## Git 규칙 (요약 — 자세한 건 docs/git-convention.md)
-- **GitHub Flow**: main에 직접 커밋·push 금지. 작업마다 최신 main에서 `<type>/<작업 id>-<설명>` 브랜치(예: `feat/T0-1-node-pnpm`) → 커밋 → push → `gh pr create`. **main 병합은 사람이 한다.**
+- **GitHub Flow + dev**: dev·main에 직접 커밋·push 금지. 작업마다 **최신 dev에서** `<type>/<작업 id>-<설명>` 브랜치(예: `feat/T0-1-node-pnpm`) → 커밋 → push → `gh pr create --base dev`. **병합은 사람이 한다.** main은 릴리스(dev → main PR, 사람이 요청할 때만).
 - **커밋 메시지**: `<type>(<scope>): <subject>` + 빈 줄 + body(무엇을·왜, 72자 줄바꿈) + 빈 줄 + footer(`Ref: T1-3`, `Fixes: #12`).
   - type: `feat` `fix` `docs` `style` `design` `test` `refactor` `build` `ci` `perf` `chore` `rename` `remove`
   - subject 50자 이내, 마침표 없음, 한국어 권장(영어면 대문자 시작·명령형).
