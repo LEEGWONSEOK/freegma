@@ -226,6 +226,7 @@ freegma/
       "$description": "페이지·섹션 제목." } } }
 ```
 - **`$description`은 필수**(빈 값이면 검사 경고, §5-4 `MISSING_DESC`). AI가 고를 근거이기 때문이다.
+- **`$type`은 토큰마다 쓴다**(그룹에서 물려받지 않음 — 파일만 봐도 타입을 알 수 있게). 쓰는 타입: `color`·`dimension`(`{value, unit: px|rem}`)·`fontFamily`·`fontWeight`·`number`·`typography`·`shadow`. 그룹·토큰 이름은 소문자·숫자·하이픈, 그룹에 쓸 수 있는 `$` 키는 `$description`뿐. 스키마: `packages/schema/src/tokens.ts`.
 - 텍스트 노드는 `"textStyle": "{style.heading}"`로 글자 스타일을 참조한다. 크기·굵기를 따로 바꾸면 «스타일에서 벗어남» 표시(2차: 스타일 덮어쓰기 허용 범위).
 
 ### 4-3. 컴포넌트 `components/button.fg.json`

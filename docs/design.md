@@ -485,6 +485,7 @@ freegma-mcp (CLI, 앱 없이도 동작)
     "styling": "tailwind@4",
     "components": { "library": "shadcn", "dir": "src/components/ui" },
     "tokens": { "output": "src/styles/tokens.css", "format": "css-vars" },
+    "router": { "kind": "react-router", "file": "src/router.tsx" },
     "conventions": "docs/frontend-conventions.md" }
   ```
   - 만들 때는 플랫폼·스펙만 고르고, 나머지 칸(컴포넌트 폴더·토큰 출력 경로 등)은 저장소를 읽어 채운다. 못 채운 칸은 기본값으로 두고 개발 모드 첫 화면에서 확인하게 한다.
