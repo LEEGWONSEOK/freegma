@@ -1,0 +1,14 @@
+# git 훅 (T0-6) — `pnpm install` 때 `prepare` 스크립트가 .git/hooks에 설치한다.
+# 규칙 원문: docs/git-convention.md
+
+pre-commit:
+  commands:
+    check:
+      # 린트 → 의존 방향 → 타입 검사 → 테스트. 실패하면 커밋하지 않는다.
+      run: pnpm check
+
+commit-msg:
+  commands:
+    commitlint:
+      # 커밋 메시지 형식 검사 (commitlint.config.ts)
+      run: pnpm exec commitlint --edit {1}
