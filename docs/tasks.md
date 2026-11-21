@@ -8,7 +8,7 @@
 2. **시작할 때**: 상태를 `[~]`(진행 중)로 바꾼다. 한 번에 하나만 `[~]`.
 3. **하는 동안**: «참고»의 design.md·spec.md 절을 먼저 읽는다. 문서와 다르게 해야 하면 멈추고 사람에게 묻는다(문서를 몰래 바꾸지 않는다).
 4. **끝낼 때**: «완료 조건»을 전부 실제로 돌려 확인 → 통과하면 `[x]`, 날짜, 커밋 해시를 적는다. 하나라도 실패하면 `[x]`로 바꾸지 않는다.
-5. **커밋**: 작업 하나 = 커밋 하나 이상. 메시지는 `feat(core): T1-3 안정된 직렬화` 꼴(작업 id 포함).
+5. **브랜치·커밋·PR**: `docs/git-convention.md`를 따른다. Git Flow — 작업마다 최신 dev에서 `feature/<작업 id>-<설명>` 브랜치 → 커밋(`feat(core): 안정된 직렬화 구현` + footer `Ref: T1-3`, AI 서명 줄 없음) → push → dev로 PR. 병합은 사람이 한다(Squash and merge). main은 release·hotfix 브랜치로만.
 6. **막히면**: 상태를 `[!]`로 바꾸고 «메모»에 이유를 적은 뒤 사람에게 알린다.
 7. **새 작업이 생기면**: 해당 단계 맨 아래에 다음 번호로 추가하고 «추가됨: 날짜, 이유»를 적는다. 기존 번호는 바꾸지 않는다.
 8. **공통 완료 조건**(모든 작업에 자동 적용): `pnpm check`(Biome + 타입 검사 + Vitest) 통과.
@@ -72,8 +72,8 @@
 
 - [ ] **T0-6 CLAUDE.md + pre-commit 훅**
   - 의존: T0-5 · 참고: spec §12
-  - 할 일: 루트 `CLAUDE.md`(spec §12 요약, 이 문서 사용법, 주요 명령), git pre-commit 훅으로 `pnpm check`(simple-git-hooks 또는 lefthook).
-  - 완료 조건: 린트 오류가 있는 상태로 `git commit` 하면 막힌다.
+  - 할 일: 루트 `CLAUDE.md` 완성(지금 있는 시작용 최소본 + spec §12 요약, 이 문서 사용법, 주요 명령 — Git 규칙 절은 유지), git 훅(lefthook 또는 simple-git-hooks): pre-commit = `pnpm check`, **commit-msg = commitlint**(type 13종 enum, header 50자, body 줄 72자, `Co-Authored-By`·`Generated with` 줄 거부 — docs/git-convention.md §2).
+  - 완료 조건: 린트 오류가 있는 상태로 `git commit` 하면 막힌다. `update stuff`, `feat: 끝에 마침표.`, AI 서명 줄이 있는 메시지는 commit-msg 훅이 거부하고, git-convention.md §2-8 예시는 통과한다.
 
 ## P1. 스키마·문서 모델 — 화면 없이 완성 (spec §5, design §3)
 
@@ -568,3 +568,4 @@
 | H6 | Claude Code 설치·로그인, 실제 서비스 저장소로 «저장소에서 가져오기» 초안 품질 확인(design-system §7-3-3), ✦ AI 탭 응답 속도 체감 확인(design §10-10) | T4-8, T5-13 |
 | H7 | 목업 피드백 항목 확정(`docs/mockup/README.md` «목업에서 정할 것» 1~9: 패널 폭, 헤더, 색, 화면 목록 등) | T2-12 |
 | H8 | 열린 결정 확정: AI 원시값 처리 기본값(경고 후 반영 제안), 기본 컴포넌트 4종(design §16-7·8) | T4-7, T5-11 |
+| H9 | GitHub 저장소 설정: 기본 브랜치를 `dev`로, `main`·`dev` 보호(직접 push 금지, PR 필수), 병합 방식은 Squash(feature·bugfix PR)·Merge commit(release·hotfix PR) 허용, 병합 후 브랜치 자동 삭제 | T0-1 전 |
