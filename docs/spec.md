@@ -207,7 +207,7 @@ freegma/
 - Electron API는 `apps/desktop`에서만. `packages/*`에서 `electron` import 금지.
 - 모든 디자인 변경은 op로(직접 객체 수정 금지).
 - 새 기능에는 fixture 또는 테스트를 같이 넣는다.
-- 커밋 메시지: Conventional Commits(`feat(canvas): …`, `fix(git): …`).
+- 브랜치·커밋·PR: `docs/git-convention.md` — GitHub Flow, `<type>(<scope>): <subject>`(type 13종: feat·fix·docs·style·design·test·refactor·build·ci·perf·chore·rename·remove), footer `Ref: <작업 id>`, AI 서명 줄 금지.
 
 ## 13. 남은 확인
 | # | 확인할 것 | 시점 |
