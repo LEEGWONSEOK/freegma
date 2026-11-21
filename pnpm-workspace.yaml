@@ -1,0 +1,6 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# package.json engines(Node 24)와 맞지 않으면 설치를 멈춘다
+engineStrict: true
